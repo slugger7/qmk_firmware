@@ -47,7 +47,7 @@ keymap_config_t keymap_config;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BL] = LAYOUT(
-        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_MPRV, KC_MSTP, KC_MPLY, KC_MNXT,            KC_VOLD, KC_MUTE, KC_VOLU, \
+        KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,             KC_VOLD, KC_MUTE, KC_VOLU, \
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,   KC_INS,  KC_HOME, KC_PGUP, \
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,   KC_DEL,  KC_END,  KC_PGDN, \
         KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT, \
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TT(_FL), KC_LGUI, KC_LALT,                   KC_SPC,                             TT(_ML), KC_RGUI, KC_RCTL, TT(_FL),            KC_LEFT, KC_DOWN, KC_RGHT \
     ),
     [_FL] = LAYOUT(
-        MD_BOOT, L_BRI,   L_BRD,   L_PTN,   L_PTP,   L_PSI,   L_PSD,   L_T_MD,  L_T_ONF, KC_F9,   KC_F10,  KC_F11,  KC_F12,             KC_PSCR, KC_SLCK, KC_PAUS, \
+        MD_BOOT, L_BRI,   L_BRD,   L_PTN,   L_PTP,   L_PSI,   L_PSD,   L_T_MD,  L_T_ONF, KC_MPRV, KC_MSTP, KC_MPLY, KC_MNXT,            KC_PSCR, KC_SLCK, KC_PAUS, \
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, \
         KC_TRNS,  KC_TRNS, KC_UP,  KC_TRNS, KC_TRNS, DF(_BL), KC_PSLS, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, \
         KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT,KC_TRNS, DF(_DL), KC_PAST, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, KC_TRNS, KC_PENT, \
