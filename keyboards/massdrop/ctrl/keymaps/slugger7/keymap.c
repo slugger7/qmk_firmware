@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, \
         KC_TRNS,  KC_TRNS, KC_UP,  KC_TRNS, KC_TRNS, DF(_BL), KC_PSLS, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, \
         KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT,KC_TRNS, DF(_DL), KC_PAST, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, KC_TRNS, KC_PENT, \
-        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_NLCK, KC_PDOT, KC_P1,   KC_P2,   KC_P3,   KC_TRNS, KC_TRNS,                              KC_MSTP, \
+        KC_TRNS, KC_MSTP, KC_MPLY, KC_MPRV, KC_MNXT, KC_NLCK, KC_PDOT, KC_P1,   KC_P2,   KC_P3,   KC_TRNS, KC_TRNS,                              KC_MSTP, \
         MO(_FL), KC_TRNS, KC_TRNS,                   KC_P0,                              KC_TRNS, KC_TRNS, KC_TRNS, MO(_FL),            KC_MPRV, KC_MPLY, KC_MNXT \
     ),
     [_ML] = LAYOUT(
