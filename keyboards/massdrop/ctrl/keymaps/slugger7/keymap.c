@@ -90,9 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 };
 
-const uint16_t PROGMEM fn_actions[] = {
 
-};
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
@@ -102,90 +100,14 @@ void matrix_init_user(void) {
 void matrix_scan_user(void) {
 };
 
-#define MODS_SHIFT  (keyboard_report->mods & MOD_BIT(KC_LSHIFT) || keyboard_report->mods & MOD_BIT(KC_RSHIFT))
-#define MODS_CTRL  (keyboard_report->mods & MOD_BIT(KC_LCTL) || keyboard_report->mods & MOD_BIT(KC_RCTRL))
-#define MODS_ALT  (keyboard_report->mods & MOD_BIT(KC_LALT) || keyboard_report->mods & MOD_BIT(KC_RALT))
+#define MODS_SHIFT  (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT))
+#define MODS_CTRL  (get_mods() & MOD_BIT(KC_LCTL) || get_mods() & MOD_BIT(KC_RCTRL))
+#define MODS_ALT  (get_mods() & MOD_BIT(KC_LALT) || get_mods() & MOD_BIT(KC_RALT))
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint32_t key_timer;
 
     switch (keycode) {
-        case L_BRI:
-            if (record->event.pressed) {
-                if (LED_GCR_STEP > LED_GCR_MAX - gcr_desired) gcr_desired = LED_GCR_MAX;
-                else gcr_desired += LED_GCR_STEP;
-                if (led_animation_breathing) gcr_breathe = gcr_desired;
-            }
-            return false;
-        case L_BRD:
-            if (record->event.pressed) {
-                if (LED_GCR_STEP > gcr_desired) gcr_desired = 0;
-                else gcr_desired -= LED_GCR_STEP;
-                if (led_animation_breathing) gcr_breathe = gcr_desired;
-            }
-            return false;
-        case L_PTN:
-            if (record->event.pressed) {
-                if (led_animation_id == led_setups_count - 1) led_animation_id = 0;
-                else led_animation_id++;
-            }
-            return false;
-        case L_PTP:
-            if (record->event.pressed) {
-                if (led_animation_id == 0) led_animation_id = led_setups_count - 1;
-                else led_animation_id--;
-            }
-            return false;
-        case L_PSI:
-            if (record->event.pressed) {
-                led_animation_speed += ANIMATION_SPEED_STEP;
-            }
-            return false;
-        case L_PSD:
-            if (record->event.pressed) {
-                led_animation_speed -= ANIMATION_SPEED_STEP;
-                if (led_animation_speed < 0) led_animation_speed = 0;
-            }
-            return false;
-        case L_T_MD:
-            if (record->event.pressed) {
-                led_lighting_mode++;
-                if (led_lighting_mode > LED_MODE_MAX_INDEX) led_lighting_mode = LED_MODE_NORMAL;
-            }
-            return false;
-        case L_T_ONF:
-            if (record->event.pressed) {
-                led_enabled = !led_enabled;
-                I2C3733_Control_Set(led_enabled);
-            }
-            return false;
-        case L_ON:
-            if (record->event.pressed) {
-                led_enabled = 1;
-                I2C3733_Control_Set(led_enabled);
-            }
-            return false;
-        case L_OFF:
-            if (record->event.pressed) {
-                led_enabled = 0;
-                I2C3733_Control_Set(led_enabled);
-            }
-            return false;
-        case L_T_BR:
-            if (record->event.pressed) {
-                led_animation_breathing = !led_animation_breathing;
-                if (led_animation_breathing) {
-                    gcr_breathe = gcr_desired;
-                    led_animation_breathe_cur = BREATHE_MIN_STEP;
-                    breathe_dir = 1;
-                }
-            }
-            return false;
-        case L_T_PTD:
-            if (record->event.pressed) {
-                led_animation_direction = !led_animation_direction;
-            }
-            return false;
         case U_T_AUTO:
             if (record->event.pressed && MODS_SHIFT && MODS_CTRL) {
                 TOGGLE_FLAG_AND_PRINT(usb_extra_manual, "USB extra port manual mode");
@@ -223,6 +145,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (timer_elapsed32(key_timer) >= 500) {
                     reset_keyboard();
                 }
+            }
+            return false;
+        case RGB_TOG:
+            if (record->event.pressed) {
+              switch (rgb_matrix_get_flags()) {
+                case LED_FLAG_ALL: {
+                    rgb_matrix_set_flags(LED_FLAG_KEYLIGHT);
+                    rgb_matrix_set_color_all(0, 0, 0);
+                  }
+                  break;
+                case LED_FLAG_KEYLIGHT: {
+                    rgb_matrix_set_flags(LED_FLAG_UNDERGLOW);
+                    rgb_matrix_set_color_all(0, 0, 0);
+                  }
+                  break;
+                case LED_FLAG_UNDERGLOW: {
+                    rgb_matrix_set_flags(LED_FLAG_NONE);
+                    rgb_matrix_disable_noeeprom();
+                  }
+                  break;
+                default: {
+                    rgb_matrix_set_flags(LED_FLAG_ALL);
+                    rgb_matrix_enable_noeeprom();
+                  }
+                  break;
+              }
             }
             return false;
         default:
