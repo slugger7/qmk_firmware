@@ -1,25 +1,13 @@
 #include QMK_KEYBOARD_H
 
 enum ctrl_keycodes {
-    L_BRI = SAFE_RANGE, //LED Brightness Increase
-    L_BRD,              //LED Brightness Decrease
-    L_PTN,              //LED Pattern Select Next
-    L_PTP,              //LED Pattern Select Previous
-    L_PSI,              //LED Pattern Speed Increase
-    L_PSD,              //LED Pattern Speed Decrease
-    L_T_MD,             //LED Toggle Mode
-    L_T_ONF,            //LED Toggle On / Off
-    L_ON,               //LED On
-    L_OFF,              //LED Off
-    L_T_BR,             //LED Toggle Breath Effect
-    L_T_PTD,            //LED Toggle Scrolling Pattern Direction
-    U_T_AUTO,           //USB Extra Port Toggle Auto Detect / Always Active
-    U_T_AGCR,           //USB Toggle Automatic GCR control
-    DBG_TOG,            //DEBUG Toggle On / Off
-    DBG_MTRX,           //DEBUG Toggle Matrix Prints
-    DBG_KBD,            //DEBUG Toggle Keyboard Prints
-    DBG_MOU,            //DEBUG Toggle Mouse Prints
-    MD_BOOT,            //Restart into bootloader after hold timeout
+                    U_T_AUTO = SAFE_RANGE, //USB Extra Port Toggle Auto Detect / Always Active
+                    U_T_AGCR,              //USB Toggle Automatic GCR control
+                    DBG_TOG,               //DEBUG Toggle On / Off
+                    DBG_MTRX,              //DEBUG Toggle Matrix Prints
+                    DBG_KBD,               //DEBUG Toggle Keyboard Prints
+                    DBG_MOU,               //DEBUG Toggle Mouse Prints
+                    MD_BOOT,               //Restart into bootloader after hold timeout
 };
 
 #define TG_NKRO MAGIC_TOGGLE_NKRO //Toggle 6KRO / NKRO mode
@@ -63,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TT(_FL), KC_LGUI, KC_LALT,                   KC_SPC,                             TT(_ML), KC_RGUI, KC_RCTL, TT(_FL),            KC_LEFT, KC_DOWN, KC_RGHT \
     ),
     [_FL] = LAYOUT(
-        MD_BOOT, L_BRI,   L_BRD,   L_PTN,   L_PTP,   L_PSI,   L_PSD,   L_T_MD,  L_T_ONF, KC_F9,   KC_F10,  KC_F11,  KC_F12,             KC_PSCR, KC_SLCK, KC_PAUS, \
+        MD_BOOT, RGB_VAD, RGB_VAI, RGB_SPD, RGB_SPI, RGB_HUD, RGB_HUI, RGB_SAD, RGB_SAI, RGB_RMOD,RGB_MOD, RGB_TOG, TG_NKRO,            KC_PSCR, KC_SLCK, KC_PAUS, \
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS, \
         KC_TRNS, KC_VOLD, KC_UP,   KC_VOLU, KC_HOME, DF(_BL), KC_PSLS, KC_P7,   KC_P8,   KC_P9,   KC_PMNS, KC_PGUP, KC_INS,  KC_DEL,    KC_TRNS, KC_TRNS, KC_TRNS, \
         KC_TRNS, KC_LEFT, KC_DOWN, KC_RIGHT,KC_END,  DF(_DL), KC_PAST, KC_P4,   KC_P5,   KC_P6,   KC_PPLS, KC_PGDN, KC_PENT, \
